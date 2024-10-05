@@ -27,6 +27,7 @@ app.get("/cart/add",(req,res)=>{
     let price=parseInt(req.query.price);
     let quantity=parseInt(req.query.quantity);
     let cartItems=addObjToArr(cart,productId,name,price,quantity);
+    cart=cartItems;
     console.log(cart);
     res.json({cartItems});
 });
@@ -45,6 +46,7 @@ app.get("/cart/edit",(req,res)=>{
     let productId=parseInt(req.query.productId);
     let quantity=parseInt(req.query.quantity);
     let cartItems=UpdateQuantityInCart(cart,productId,quantity);
+    cart=cartItems;
     res.json({cartItems});
 });
 
@@ -56,6 +58,7 @@ app.get("/cart/delete",(req,res)=>{
     let productId=parseInt(req.query.productId);
     let result=DeleteItemFromCart(cart,productId);
     cartItems=result;
+    cart=cartItems;
     res.json({cartItems});
 });
 
