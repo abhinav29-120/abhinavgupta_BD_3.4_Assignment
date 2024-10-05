@@ -21,13 +21,14 @@ function addObjToArr(ArrObj, pid, pname, price, pquantity) {
   return ArrObj;
 }
 app.get('/cart/add', (req, res) => {
-  console.log(cart);
+  // console.log(cart);
   let productId = parseInt(req.query.productId);
   let name = req.query.name;
   let price = parseInt(req.query.price);
   let quantity = parseInt(req.query.quantity);
   let cartItems = addObjToArr(cart, productId, name, price, quantity);
-  console.log(cart);
+  cart = cartItems;
+  // console.log(cart);
   res.json({ cartItems });
 });
 
@@ -45,6 +46,7 @@ app.get('/cart/edit', (req, res) => {
   let productId = parseInt(req.query.productId);
   let quantity = parseInt(req.query.quantity);
   let cartItems = UpdateQuantityInCart(cart, productId, quantity);
+  cart = cartItems;
   res.json({ cartItems });
 });
 
@@ -56,6 +58,7 @@ app.get('/cart/delete', (req, res) => {
   let productId = parseInt(req.query.productId);
   let result = DeleteItemFromCart(cart, productId);
   cartItems = result;
+  cart = result;
   res.json({ cartItems });
 });
 
@@ -75,6 +78,7 @@ function TotalCartQuant(ArrObj) {
 }
 app.get('/cart/total-quantity', (req, res) => {
   let cartItems = TotalCartQuant(cart);
+  cart = cartItems;
   res.json({ cartItems });
 });
 
